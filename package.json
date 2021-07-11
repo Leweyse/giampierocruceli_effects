@@ -1,0 +1,28 @@
+{
+  "homepage": "http://leweyse.github.io/giampierocruceli_effects",
+  "name": "giampierocruceli_effect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "start": "parcel serve docs/index.html",
+    "build": "parcel build docs/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dat.gui": "^0.7.7",
+    "gsap": "^3.7.0",
+    "parcel": "^2.0.0-beta.2",
+    "simple-input-events": "^2.0.0",
+    "three": "^0.130.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-glsl": "2.0.0-beta.2",
+    "@parcel/transformer-image": "2.0.0-beta.2",
+    "gh-pages": "^3.2.3"
+  }
+}
