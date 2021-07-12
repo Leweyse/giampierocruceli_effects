@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "deploy": "gh-pages -d docs",
+    "deploy": "gh-pages -d dist",
     "start": "parcel serve docs/index.html",
     "build": "parcel build docs/index.html"
   },

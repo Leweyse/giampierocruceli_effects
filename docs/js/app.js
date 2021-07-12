@@ -1,5 +1,5 @@
-import * as THREE from 'https://unpkg.com/three@0.130.1/build/three.module.js';
-import gsap from 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js';
+import * as THREE from 'three';
+import gsap from 'gsap';
 
 import fragment from './shaders/fragment.glsl';
 import vertex from './shaders/vertex.glsl';
