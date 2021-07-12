@@ -1,13 +1,10 @@
-import * as THREE from 'three';
-import createInputEvents from 'simple-input-events';
-import gsap from 'gsap';
+import * as THREE from 'https://unpkg.com/three@0.130.1/build/three.module.js';
+import gsap from 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js';
 
 import fragment from './shaders/fragment.glsl';
 import vertex from './shaders/vertex.glsl';
 
 import img1 from "url:./img/img1.jpg";
-
-const event = createInputEvents(window);
 
 export default class Sketch {
     constructor() {
@@ -39,7 +36,6 @@ export default class Sketch {
         this.render();
 
         this.mouseEvents();
-        this.mouseMoveEvent();
     }
 
     // settings() {
@@ -55,7 +51,7 @@ export default class Sketch {
     // }
 
     setupResize() {
-        window.addEventListener('resize', this.resize.bind(this))
+        window.addEventListener('resize', this.resize.bind(this));
     }
 
     resize() {
@@ -94,22 +90,12 @@ export default class Sketch {
         this.camera.updateProjectionMatrix();
     }
 
-    mouseMoveEvent() {
-        event.on('move', ({ position, event, inside, dragging }) => {
-            this.mouse.x = position[0] / this.width;
-            this.mouse.y = 1.0 - position[1] / this.height;
-            this.material.uniforms.mouse.value = this.mouse;
-        }) 
-    }
-
     getSpeed() {
         this.speed = Math.sqrt(
             ((this.mouse.x - this.prevMouse.x)**2 + (this.mouse.y - this.prevMouse.y)**2) * Math.PI / 6
         );
 
         this.targetSpeed += 0.075 * ((this.speed * (Math.PI / 8)) - this.targetSpeed);
-
-        console.log(this.targetSpeed);
 
         this.prevMouse.x = this.mouse.x;
         this.prevMouse.y = this.mouse.y;
@@ -123,6 +109,15 @@ export default class Sketch {
                 duration: 0.5
             })
         })
+
+        document.addEventListener('mousemove', (e) => {
+            this.mouse.x = (window.Event) ? e.pageX : e.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+	        this.mouse.y = (window.Event) ? e.pageY : e.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+            this.mouse.x = this.mouse.x / this.width;
+            this.mouse.y = 1.0 - this.mouse.y / this.height;
+            this.material.uniforms.mouse.value = this.mouse; 
+            console.log(this.material.uniforms.mouse.value)
+        });
 
         document.addEventListener('mouseup', () => {
             this.material.uniforms.direction.value = 1;

@@ -3,10 +3,9 @@
   "name": "giampierocruceli_effect",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d docs",
     "start": "parcel serve docs/index.html",
     "build": "parcel build docs/index.html"
   },
